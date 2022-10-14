@@ -3,6 +3,7 @@ require_once("includes/config.inc.php");
 
 $pageTitle = 'Home';
 $pageDescription = 'Welcome to my website - learn about me and my hobbies!';
+$sideBar = "hobbies-sidebar.inc.php";
 
 require('includes/header.inc.php'); 
 ?>

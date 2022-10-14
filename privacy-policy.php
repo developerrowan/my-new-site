@@ -3,6 +3,7 @@ require_once("includes/config.inc.php");
 
 $pageTitle = 'Privacy Policy';
 $pageDescription = 'Read my privacy policy to know your data is in good hands.';
+$sideBar = "hobbies-sidebar.inc.php";
 
 require('includes/header.inc.php'); 
 ?>

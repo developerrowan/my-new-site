@@ -3,6 +3,7 @@ require_once("includes/config.inc.php");
 
 $pageTitle = 'Contact';
 $pageDescription = 'Contact me to ask questions or say something.';
+$sideBar = "hobbies-sidebar.inc.php";
 
 require('includes/header.inc.php'); 
 ?>

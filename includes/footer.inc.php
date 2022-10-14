@@ -1,8 +1,5 @@
-<?php
-$sideBar = "hobbies-sidebar.inc.php";
-?>
 		<?php if(!empty($sideBar)) {
-			require("includes/$sideBar");
+			require(dirname(__FILE__) . "/$sideBar");
 		}
 		?>
 		</div>
