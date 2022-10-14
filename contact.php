@@ -1,11 +1,13 @@
-<?php 
+<?php
+require_once("includes/config.inc.php");
+
 $pageTitle = 'Contact';
 $pageDescription = 'Contact me to ask questions or say something.';
 
 require('includes/header.inc.php'); 
 ?>
 <main>
-	<script src="/my-new-site/js/contact-form.js"></script>
+	<script src="<?= PROJECT_DIR ?>js/contact-form.js"></script>
 	<div class="content-frame">
 		<h1>Contact Me</h1>
 		<form id="contactForm" method="POST" action="">

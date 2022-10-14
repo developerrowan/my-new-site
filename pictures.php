@@ -1,11 +1,13 @@
-<?php 
+<?php
+require_once("includes/config.inc.php");
+
 $pageTitle = 'Pictures';
 $pageDescription = 'View some interesting pictures I have.';
 
 require('includes/header.inc.php'); 
 ?>
 <main>
-	<script src="/my-new-site/js/photo-gallery.js"></script>
+	<script src="<?= PROJECT_DIR ?>js/photo-gallery.js"></script>
 	<div class="content-frame">
 		<h1>Pictures</h1>
 		<div id="image-gallery">

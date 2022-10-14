@@ -1,4 +1,6 @@
-<?php 
+<?php
+require_once("../includes/config.inc.php");
+
 $pageTitle = 'Blog';
 $pageDescription = 'Read some thoughts of mine, or research I\'ve done.';
 
