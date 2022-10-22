@@ -5,6 +5,28 @@ $pageTitle = 'Contact';
 $pageDescription = 'Contact me to ask questions or say something.';
 $sideBar = "hobbies-sidebar.inc.php";
 
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+	$firstName = $_POST['txtFirstName'] ?? "";
+	$lastName = $_POST['txtLastName'] ?? "";
+	$email = $_POST['txtEmail'] ?? "";
+	$comments = $_POST['txtComments'] ?? "";
+
+	if(validateContactData($firstName, $lastName, $email, $comments)) {
+		$msg = "Name: $firstName $lastName <br>";
+		$msg .= "Email: $email <br>";
+		$msg .= "Comments: $comments";
+
+		sendEmail(ADMIN_EMAIL, "Contact Form", $msg);
+		header("Location: " . PROJECT_DIR . "contact-confirmation.php");
+		exit();
+	} else {
+		$msg = getAllSuperGlobals();
+		sendEmail(ADMIN_EMAIL, "Security Warning!", $msg);
+		header("Location: " . PROJECT_DIR . "error.php");
+		exit();
+	}
+}
+
 require('includes/header.inc.php'); 
 ?>
 <main>
@@ -51,4 +73,18 @@ require('includes/header.inc.php');
 		</form>
 	</div>
 </main>
-<?php require('includes/footer.inc.php'); ?>
+<?php 
+require('includes/footer.inc.php'); 
+
+function validateContactData($firstName, $lastName, $email, $comments) {
+	if(empty($firstName) || empty($lastName) || empty($email) || empty($comments)) {
+		return false;
+	}
+
+	if(filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+		return false;
+	}
+
+	return true;
+}
+?>
