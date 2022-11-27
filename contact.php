@@ -3,7 +3,6 @@ require_once("includes/config.inc.php");
 
 $pageTitle = 'Contact';
 $pageDescription = 'Contact me to ask questions or say something.';
-$sideBar = "hobbies-sidebar.inc.php";
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
 	$firstName = $_POST['txtFirstName'] ?? "";
@@ -29,49 +28,77 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
 require('includes/header.inc.php'); 
 ?>
-<main>
-	<script src="<?= PROJECT_DIR ?>js/contact-form.js"></script>
-	<div class="content-frame">
-		<h1>Contact Me</h1>
-		<form id="contactForm" method="POST" action="">
-			<table border="1">
-				<tr>
-					<td align="right" valign="bottom">First Name:</td>
-					<td>
-						<div class="validation-message" id="vFirstName"></div>
-						<input type="text" id="txtFirstName" name="txtFirstName">
-					</td>
-				</tr>
-				<tr>
-					<td align="right" valign="bottom">Last Name:</td>
-					<td>
-						<div class="validation-message" id="vLastName"></div>
-						<input type="text" id="txtLastName" name="txtLastName">
-					</td>
-				</tr>
-				<tr>
-					<td align="right" valign="bottom">Email:</td>
-					<td>
-						<div class="validation-message" id="vEmail"></div>
-						<input type="text" id="txtEmail" name="txtEmail">
-					</td>
-				</tr>
-				<tr>
-					<td align="right" valign="top">Comments:</td>
-					<td>
-						<div class="validation-message" id="vComments"></div>
-						<textarea id="txtComments" name="txtComments"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td align="right">&nbsp;</td>
-					<td>
-						<input type="submit" value="SUBMIT">
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
+<script src="<?= PROJECT_DIR ?>assets/js/contact-form.js"></script>
+<div class="route bg-image" style="background-image: url(assets/img/overlay-bg.jpg)">
+    <div class="overlay-mf"></div>
+  </div>
+		<main id="main">
+			<!-- ======= Contact Section ======= -->
+			<section id="contact" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(assets/img/overlay-bg.jpg)">
+      <div class="overlay-mf"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="contact-mf">
+              <div id="contact" class="box-shadow-full">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="title-box-2">
+                      <h5 class="title-left">
+                        Contact
+                      </h5>
+                    </div>
+                    <div>
+                      <form id="contactForm" action="" method="POST" role="form" class="php-email-form">
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                              <input type="text" name="txtFirstName" class="form-control" id="txtFirstName" placeholder="First Name" required>
+                            </div>
+                          </div>
+						  <div class="col-md-6 mb-3">
+                            <div class="form-group">
+                              <input type="text" name="txtLastName" class="form-control" id="txtLastName" placeholder="Last Name" required>
+                            </div>
+                          </div>
+                          <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                              <input type="email" class="form-control" name="txtEmail" id="txtEmail" placeholder="Email" required>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <textarea class="form-control" name="txtComments" id="txtComments" rows="5" placeholder="Comments" required></textarea>
+                            </div>
+                          </div>
+                          <div class="col-md-12 text-center my-3">
+                          </div>
+                          <div class="col-md-12 text-center">
+                            <button type="submit" class="button button-a button-big button-rouded">Send</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="title-box-2 pt-4 pt-md-0">
+                      <h5 class="title-left">
+                        Get in Touch
+                      </h5>
+                    </div>
+                    <div class="more-info">
+                      <p class="lead">
+                        Send me a message and I'll get back to you as soon as I am able!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Contact Section -->
 </main>
 <?php 
 require('includes/footer.inc.php'); 

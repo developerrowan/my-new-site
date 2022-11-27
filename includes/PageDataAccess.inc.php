@@ -16,10 +16,18 @@ class PageDataAccess{
 	// Get a listing of all blog pages
 	function getPageList($activeOnly = true){
 
-		$qStr = "SELECT pageId, path, title, DATE_FORMAT(publishedDate,'%m/%e/%Y') as publishedDate, active FROM pages";
+		$qStr = "SELECT 
+                    pageId,
+                    path,
+                    title,
+                    description,
+                    categories.name as categoryName,
+                    DATE_FORMAT(publishedDate,'%m/%e/%Y') as publishedDate,
+                    pages.active
+                FROM pages INNER JOIN categories on pages.categoryId = categories.categoryId";
 		
 		if($activeOnly){
-			$qStr .= " WHERE active = 'yes'";
+			$qStr .= " WHERE pages.active = 'yes'";
 		}
 
 		$qStr .= " ORDER BY publishedDate DESC";
@@ -34,6 +42,8 @@ class PageDataAccess{
 			$page['pageId'] = htmlentities($row['pageId']);
 			$page['path'] = htmlentities($row['path']);
 			$page['title'] = htmlentities($row['title']);
+            $page['description'] = htmlentities($row['description']);
+            $page['categoryName'] = htmlentities($row['categoryName']);
 			$page['publishedDate'] = htmlentities($row['publishedDate']);
 			$page['active'] = htmlentities($row['active']);
 			$pageList[] = $page;
@@ -78,6 +88,12 @@ class PageDataAccess{
         } else {
             return false;
         }
+    }
+
+    function niceDate($date) {
+        $d = new DateTimeImmutable($date);
+
+        return $d->format('F j, Y');
     }
 
 }
