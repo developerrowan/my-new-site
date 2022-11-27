@@ -1,23 +1,23 @@
   <!-- ======= Footer ======= -->
   <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="copyright-box">
-            <p class="copyright">&copy;<?= date("Y") ?> <strong>Devin Rowan</strong>. All Rights Reserved | <a href="<?= PROJECT_DIR ?>privacy-policy.php">Privacy Policy</a></p>
-            <div class="credits">
-              <!--
+  	<div class="container">
+  		<div class="row">
+  			<div class="col-sm-12">
+  				<div class="copyright-box">
+  					<p class="copyright">&copy;<?= date("Y") ?> <strong>Devin Rowan</strong>. All Rights Reserved | <a href="<?= PROJECT_DIR ?>privacy-policy.php">Privacy Policy</a></p>
+  					<div class="credits">
+  						<!--
               All the links in the footer should remain intact.
               You can delete the links only if you purchased the pro version.
               Licensing information: https://bootstrapmade.com/license/
               Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
             -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  						Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
   </footer><!-- End  Footer -->
 
   <div id="preloader"></div>
@@ -33,6 +33,6 @@
   <!-- Template Main JS File -->
   <script src="<?= PROJECT_DIR ?>assets/js/main.js"></script>
 
-</body>
+  </body>
 
-</html>
+  </html>

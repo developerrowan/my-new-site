@@ -1,22 +1,26 @@
 <?php
-class PageDataAccess{
-	
-	private $link;
+class PageDataAccess
+{
 
-	// CONSTRUCTOR
-	function __construct($link){
-		$this->link = $link;
-	}
+    private $link;
 
-	// We'll invoke this method when we encounter a database error
-	function handleError($msg){
-		throw new Exception($msg);
-	}
+    // CONSTRUCTOR
+    function __construct($link)
+    {
+        $this->link = $link;
+    }
 
-	// Get a listing of all blog pages
-	function getPageList($activeOnly = true){
+    // We'll invoke this method when we encounter a database error
+    function handleError($msg)
+    {
+        throw new Exception($msg);
+    }
 
-		$qStr = "SELECT 
+    // Get a listing of all blog pages
+    function getPageList($activeOnly = true)
+    {
+
+        $qStr = "SELECT 
                     pageId,
                     path,
                     title,
@@ -25,34 +29,35 @@ class PageDataAccess{
                     DATE_FORMAT(publishedDate,'%m/%e/%Y') as publishedDate,
                     pages.active
                 FROM pages INNER JOIN categories on pages.categoryId = categories.categoryId";
-		
-		if($activeOnly){
-			$qStr .= " WHERE pages.active = 'yes'";
-		}
 
-		$qStr .= " ORDER BY publishedDate DESC";
-		//die($qStr);
+        if ($activeOnly) {
+            $qStr .= " WHERE pages.active = 'yes'";
+        }
 
-		$result = mysqli_query($this->link, $qStr) or $this->handleError(mysqli_error($this->link));
+        $qStr .= " ORDER BY publishedDate DESC";
+        //die($qStr);
 
-		$pageList = array();
+        $result = mysqli_query($this->link, $qStr) or $this->handleError(mysqli_error($this->link));
 
-		while($row = mysqli_fetch_assoc($result)){
-			$page = array();
-			$page['pageId'] = htmlentities($row['pageId']);
-			$page['path'] = htmlentities($row['path']);
-			$page['title'] = htmlentities($row['title']);
+        $pageList = array();
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $page = array();
+            $page['pageId'] = htmlentities($row['pageId']);
+            $page['path'] = htmlentities($row['path']);
+            $page['title'] = htmlentities($row['title']);
             $page['description'] = htmlentities($row['description']);
             $page['categoryName'] = htmlentities($row['categoryName']);
-			$page['publishedDate'] = htmlentities($row['publishedDate']);
-			$page['active'] = htmlentities($row['active']);
-			$pageList[] = $page;
-		}
+            $page['publishedDate'] = htmlentities($row['publishedDate']);
+            $page['active'] = htmlentities($row['active']);
+            $pageList[] = $page;
+        }
 
-		return $pageList;
-	}
-	
-    function getPageById($id) {
+        return $pageList;
+    }
+
+    function getPageById($id)
+    {
         $id = mysqli_real_escape_string($this->link, $id);
 
         $qStr = "SELECT
@@ -68,10 +73,10 @@ class PageDataAccess{
                 FROM pages
                 INNER JOIN categories on pages.categoryId = categories.categoryId
                 WHERE pageId = {$id}";
-        
+
         $result = mysqli_query($this->link, $qStr) or $this->handleError(mysqli_error($this->link));
 
-        if(mysqli_num_rows($result) == 1) {
+        if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
             $page = array();
             $page['pageId'] = htmlentities($row['pageId']);
@@ -90,10 +95,10 @@ class PageDataAccess{
         }
     }
 
-    function niceDate($date) {
+    function niceDate($date)
+    {
         $d = new DateTimeImmutable($date);
 
         return $d->format('F j, Y');
     }
-
 }
